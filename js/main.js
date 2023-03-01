@@ -65,7 +65,7 @@ class Board {
         currentBlock.css({
             border: '2px solid gray',
         });
-        $('span').css({
+        $('.singleDiv > span').css({
             border: 'none', backgroundColor: 'transparent'
         });
     }
@@ -74,7 +74,7 @@ class Board {
         $('.board :nth-child(' + this.blockId + ')').css({
             border: '1px solid darkslategray',
         })
-        $('span').css({
+        $('.singleDiv > span').css({
             border: 'none',
         });
     }
@@ -85,7 +85,7 @@ class Board {
             $('.board :nth-child(' + index + ')').css({
                 backgroundColor: color, color: 'white',
             });
-            $('span').css({
+            $('.singleDiv > span').css({
                 backgroundColor: 'transparent', color: 'inherit',
             });
         }, 100);
@@ -109,7 +109,6 @@ class Board {
         guessedIndexes.forEach(element => {
             let temporaryArray;
             if (insertedIndexes.includes(element)) {
-                console.log($.inArray(element, insertedIndexes))
                 temporaryArray = insertedIndexes.splice($.inArray(element, insertedIndexes), 1);
                 futureUsedInsertedIndexes.push(temporaryArray[0]);
             } else {
