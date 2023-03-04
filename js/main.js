@@ -81,6 +81,7 @@ class Board {
 
     rotateBlock(index, color) {
         $('.board :nth-child(' + index + ')').addClass('startAnimation');
+        keyboard.paintBlock($('.board :nth-child(' + index + ') > span').text(), color);
         setTimeout(function () {
             $('.board :nth-child(' + index + ')').css({
                 backgroundColor: color, color: 'white',
@@ -128,7 +129,6 @@ class Board {
         let currentIndex = this.blockId - 6;
         let startIndex = 0;
         let greenBlocks = 0;
-
         let gameInterval = setInterval(function () {
             let guessingAndInserting = board.getAllIndex(startIndex, randomArray);
             if (guessingAndInserting.guessedIndexes.includes(startIndex)) {
@@ -179,6 +179,54 @@ class Board {
     }
 }
 
+class virtualKeyboard{
+    #keyboardLetters = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o','p', '\n', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k',
+        'l','\n', 'z', 'x', 'c', 'v', 'b', 'n', 'm'];
+
+    #keyboardRow
+
+    #keyboardElement
+    constructor(keyboard){
+        this.keyboardSelector = keyboard;
+        this.keyboard = $(this.keyboardSelector);
+
+    }
+
+    createKeyboard(){
+        let startIndex = 0;
+        for (let i =0; i <=2; i++){
+            this.#keyboardRow = $('<div></div>');
+            this.#keyboardRow.addClass('keyboardRow');
+            let stopIndex = $.inArray('\n', this.#keyboardLetters);
+            for(let j = startIndex; j <= this.#keyboardLetters.length-1; j++){
+                if(j === stopIndex) {
+                    startIndex = stopIndex;
+                    this.#keyboardLetters.splice(stopIndex,1);
+                    break;
+                }
+                this.#keyboardElement = $('<div></div>');
+                this.#keyboardElement.addClass('keyboardLetter');
+                this.#keyboardElement.text(this.#keyboardLetters[j]);
+                this.#keyboardRow.append(this.#keyboardElement);
+            }
+            this.keyboard.append(this.#keyboardRow);
+        }
+    }
+
+    paintBlock(symbol, color){
+        let keyboardBlocks = $('.keyboardLetter');
+        $.each(keyboardBlocks, (index, element) =>{
+            if(element.innerText === symbol.toLowerCase() && keyboardBlocks[index].style.backgroundColor !== 'rgb(67, 124, 23)'){
+                if(keyboardBlocks[index].style.backgroundColor ==='rgb(253, 208, 23)' && color === '#808080') return;
+                keyboardBlocks[index].style.backgroundColor = color;
+            }
+        })
+    }
+}
+
 let board = new Board('.board', 1);
 board.createBoard();
-board.chooseWord()
+board.chooseWord();
+
+let keyboard = new virtualKeyboard('.virtualKeyboard');
+keyboard.createKeyboard();
