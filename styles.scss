@@ -58,7 +58,7 @@
 
 .startAnimation.singleDiv, .startAnimation>span{
   animation-name: rotation;
-  animation-duration: 0.2s;
+  animation-duration: 0.1s;
   pointer-events: none;
 }
 
@@ -136,6 +136,7 @@
   box-sizing: border-box;
   align-items: center;
   margin-top: 20px;
+  opacity: 0.7;
   gap: 10px;
 }
 
@@ -179,7 +180,9 @@
   }
 
   .board{
-    width: 265px;
+    width: 245px;
+    height: 350px;
+    gap: 5px;
   }
 
   .singleDiv{

@@ -89,7 +89,7 @@ class Board {
             $('.singleDiv > span').css({
                 backgroundColor: 'transparent', color: 'inherit',
             });
-        }, 100);
+        }, 50);
     }
 
     getAllIndex(startIndex, randomArray) {
