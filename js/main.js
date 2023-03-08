@@ -164,6 +164,13 @@ class Board {
         }, 300, currentIndex);
 
     }
+    //TO DO CHECKING SPELLING
+    // checkSpelling(){
+    //     const spell = require('spell-checker-js')
+    //     spell.load('en');
+    //     let is_spelled_correctly = spell.check(this.currentArray.join(''));
+    //     console.log(is_spelled_correctly);
+    // }
 
     removeEvent(){
         $(document).off('keydown', this.clickHandler);
@@ -173,6 +180,7 @@ class Board {
         if (this.currentArray.length === 5) {
             if (e.code === this.CONFIRM_KEYCODE) {
                 this.checkWord();
+                this.checkSpelling();
                 // this.currentArray = [];
             }
             if (e.code === this.DELETE_KEYCODE) {
