@@ -92,6 +92,18 @@ class Board {
         }, 50);
     }
 
+    animateVictory(currentIndex){
+        let currentBlockIndex = currentIndex - 3;
+        let lastBlockIndex = currentBlockIndex + 5;
+        let interval = setInterval(function(){
+            $('.board :nth-child(' + currentBlockIndex + ')').addClass('victory');
+            currentBlockIndex ++;
+            if(currentBlockIndex === lastBlockIndex){
+                clearInterval(interval);
+            }
+        }, 100)
+    }
+
     getAllIndex(startIndex, randomArray) {
         let guessedIndexes = [];
         let insertedIndexes = [];
@@ -134,7 +146,10 @@ class Board {
             if (guessingAndInserting.guessedIndexes.includes(startIndex)) {
                 greenBlocks++;
                 board.rotateBlock(currentIndex + 1, '#437C17');
-                if (greenBlocks === 5) board.removeEvent();
+                if (greenBlocks === 5) {
+                    board.animateVictory(currentIndex)
+                    board.removeEvent();
+                }
             } else if (guessingAndInserting.insertedIndexes.includes(startIndex) && guessingAndInserting.guessedIndexes.length !== 0) {
                 board.rotateBlock(currentIndex + 1, '#FDD017');
             } else {
@@ -146,7 +161,7 @@ class Board {
                 clearInterval(gameInterval);
                 board.currentArray = [];
             }
-        }, 400, currentIndex);
+        }, 300, currentIndex);
 
     }
 

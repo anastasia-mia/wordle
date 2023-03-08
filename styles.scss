@@ -10,6 +10,18 @@
   }
 }
 
+@keyframes victoryAnimation {
+  0%{
+    transform: translateY(0);
+  }
+  50%{
+    transform: translateY(-8px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
+
 .container{
   display: flex;
   flex-direction: column;
@@ -59,6 +71,12 @@
 .startAnimation.singleDiv, .startAnimation>span{
   animation-name: rotation;
   animation-duration: 0.1s;
+  pointer-events: none;
+}
+
+.victory.singleDiv{
+  animation-name: victoryAnimation;
+  animation-duration: 0.7s;
   pointer-events: none;
 }
 
