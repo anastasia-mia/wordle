@@ -16,7 +16,7 @@
                     <p class="text">Welcome to <span class="gameName">Wordle</span></p>
                 </div>
                 <p class="text">Try your luck in guessing words!</p>
-                <button class="startGameButton">Proceed to the Game</button>
+                <button class="startGameButton button">Proceed to the Game</button>
             </div>
         </div>
     </div>
@@ -24,9 +24,19 @@
         <h1 class="mainTitle">WORDLE</h1>
         <div class="board"></div>
         <div class="virtualKeyboard">
-
         </div>
     </div>
+    <div class="blurBackgroundOfGameEndPopUp">
+        <div class="gameEnd gameEnd_popUp">
+            <div class="gameEnd_header">
+                <p class="gameEnd_status"></p>
+                <div class="gameEnd_cross"></div>
+            </div>
+            <div class="gameEnd_word"></div>
+            <button class="gameEnd_restartButton button">Try Again</button>
+        </div>
+    </div>
+
 
 
     <script src="js/main.js"></script>

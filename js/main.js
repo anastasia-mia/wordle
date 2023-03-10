@@ -149,6 +149,9 @@ class Board {
                 if (greenBlocks === 5) {
                     board.animateVictory(currentIndex)
                     board.removeEvent();
+                    setTimeout( function(){
+                        board.callPopup('You WON!', '#437C17');
+                    }, 1500);
                 }
             } else if (guessingAndInserting.insertedIndexes.includes(startIndex) && guessingAndInserting.guessedIndexes.length !== 0) {
                 board.rotateBlock(currentIndex + 1, '#FDD017');
@@ -160,9 +163,13 @@ class Board {
             if (startIndex === 5) {
                 clearInterval(gameInterval);
                 board.currentArray = [];
+                if($('.board :nth-child(30)').hasClass('startAnimation') && greenBlocks !== 5){
+                    setTimeout( function(){
+                        board.callPopup('You LOST!', '#C0392B');
+                    }, 1000);
+                }
             }
         }, 300, currentIndex);
-
     }
 
     removeEvent(){
@@ -173,7 +180,6 @@ class Board {
         if (this.currentArray.length === 5) {
             if (e.code === this.CONFIRM_KEYCODE) {
                 this.checkWord();
-                // this.currentArray = [];
             }
             if (e.code === this.DELETE_KEYCODE) {
                 if ($('.board :nth-child(' + (this.blockId - 1) + ')').hasClass('startAnimation')) return;
@@ -191,6 +197,21 @@ class Board {
 
             }
         }
+    }
+
+    startAgain(){
+        board.createBoard();
+        board.chooseWord();
+        this.clickHandler = this.fillBoard.bind(this)
+        $(document).on('keydown', this.clickHandler);
+        this.currentArray = [];
+        this.blockId = 1;
+    }
+
+    callPopup(status, color){
+        $('.blurBackgroundOfGameEndPopUp').css('visibility', 'visible');
+        $('.gameEnd_status').text(status);
+        $('.gameEnd_word').text(this.chosenWord).css('color', color);
     }
 }
 
@@ -235,6 +256,12 @@ class virtualKeyboard{
                 if(keyboardBlocks[index].style.backgroundColor ==='rgb(253, 208, 23)' && color === '#808080') return;
                 keyboardBlocks[index].style.backgroundColor = color;
             }
+        })
+    }
+
+    resetKeyboard(){
+        $.each($('.keyboardLetter'), (index, element) =>{
+            $(element).css('backgroundColor', 'transparent');
         })
     }
 }
