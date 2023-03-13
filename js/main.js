@@ -266,6 +266,11 @@ class virtualKeyboard{
     }
 }
 
+$('.giveUpButton').on('click', () =>{
+    board.callPopup('Try Once Again!', '#C0392B');
+    board.removeEvent();
+})
+
 let board = new Board('.board', 1);
 board.createBoard();
 board.chooseWord();

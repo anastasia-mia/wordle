@@ -259,7 +259,7 @@
     border: 1px dashed darkgray;
     box-sizing: border-box;
     text-align: center;
-    width: 90px;
+    width: 110px;
     text-transform: uppercase;
     margin: 25px auto 35px auto;
   }
@@ -271,6 +271,20 @@
     width: 92px;
     box-sizing: border-box;
     display: block;
+  }
+}
+
+.giveUpButton{
+  background-color: gainsboro;
+  border: 1px solid lightgray;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 3px;
+  color: darkslategrey;
+  cursor: pointer;
+  font-weight: 600;
+  &:hover{
+    background-color: darken(gainsboro, 10%);
   }
 }
 
