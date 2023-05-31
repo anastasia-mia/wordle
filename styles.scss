@@ -173,6 +173,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   transition: background-color 0.3s ease;
 }
 
@@ -216,40 +217,6 @@
     width: 100%
   }
 
-  &_cross{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    opacity: 0.7;
-    right: 10px;
-    top: 10px;
-    padding: 3px;
-    cursor: pointer;
-
-    &:hover{
-      opacity: 1;
-    }
-
-    &:before, &:after{
-      position: absolute;
-      content: '';
-      background-color: #333;
-      margin: auto;
-      left: 10px;
-      top:0;
-      height: 18px;
-      width: 2px;
-    }
-
-    &:before{
-      transform: rotate(45deg);
-    }
-
-    &:after{
-      transform: rotate(-45deg);
-    }
-  }
-
   &_word {
     padding:10px;
     font-weight: 700;
@@ -274,7 +241,41 @@
   }
 }
 
-.giveUpButton{
+.cross{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  right: 10px;
+  top: 10px;
+  padding: 3px;
+  cursor: pointer;
+
+  &:hover{
+    opacity: 1;
+  }
+
+  &:before, &:after{
+    position: absolute;
+    content: '';
+    background-color: #333;
+    margin: auto;
+    left: 10px;
+    top:0;
+    height: 18px;
+    width: 2px;
+  }
+
+  &:before{
+    transform: rotate(45deg);
+  }
+
+  &:after{
+    transform: rotate(-45deg);
+  }
+}
+
+.headerButton{
   background-color: gainsboro;
   border: 1px solid lightgray;
   font-size: 14px;
@@ -288,7 +289,130 @@
   }
 }
 
+.giveUpButton{
+  transform: translate(-110px);
+}
+
+.showRulesButton{
+  transform: translate(110px);
+}
+
+.rules {
+  visibility: hidden;
+  position: absolute;
+  top: 8px;
+  left: calc(50vw + 190px);
+  width: 26vw;
+  background-color: #EFECEC;
+  border-radius: 3px;
+  padding: 10px;
+
+  &:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -18px;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-right: 20px solid #EFECEC;
+    border-bottom: 12px solid transparent;
+  }
+
+  &_content {
+    justify-content: flex-start;
+  }
+
+  &_title {
+    text-align: center;
+    color: darkgreen;
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  &_firstRule {
+  }
+
+  &_rule {
+    font-size: 18px;
+    line-height: 18px;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      margin-right: 10px;
+      width: 10px;
+      height: 10px;
+      top: 0;
+      left: 0;
+      position: relative;
+      background-color: #003100;
+      border-radius: 50%;
+    }
+  }
+
+  &_colorRule {
+    margin-left: 15px;
+    line-height: 25px;
+  }
+
+  .greenColor, .yellowColor, .grayColor{
+    color: white;
+    padding: 5px;
+    font-weight: 600;
+  }
+
+  .greenColor{
+    background-color: #437C17;
+  }
+
+  .yellowColor{
+    background-color: #FDD017;
+  }
+
+  .grayColor{
+    background-color: #808080;
+  }
+}
+
+.visibleBlock{
+  visibility: visible;
+}
+
+@media (max-width: 1024px){
+  .rules{
+    left: calc(50vw - 130px);
+    top: 60px;
+    width: 250px;
+
+    &_rule{
+      font-size: 16px;
+    }
+
+    &:before{
+      display: none;
+    }
+
+    &:after{
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      right: 0;
+      top: -18px;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-bottom: 20px solid #EFECEC;
+    }
+  }
+}
+
 @media (max-width: 468px){
+  .container{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
   .welcome_popUp{
     width: 75vw;
     text-align: center;
@@ -327,5 +451,17 @@
 
   .keyboardRow{
     gap: 4px;
+  }
+
+  .giveUpButton{
+    transform: translate(-65px);
+  }
+
+  .showRulesButton{
+    transform: translate(65px);
+  }
+
+  .rules{
+    width: 240px;
   }
 }

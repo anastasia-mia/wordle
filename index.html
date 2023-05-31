@@ -22,18 +22,32 @@
     </div>
     <div class="container">
         <div class="header">
-            <button class="giveUpButton">Give Up</button>
+            <button class="giveUpButton headerButton">Give Up</button>
+            <button class="showRulesButton headerButton">Rules</button>
         </div>
         <h1 class="mainTitle">WORDLE</h1>
-        <div class="board"></div>
+        <div class="board" autofocus></div>
         <div class="virtualKeyboard">
+        </div>
+    </div>
+    <div class="game_rules rules">
+        <div class="rules_content">
+            <div class="rules_cross cross"></div>
+            <p class="rules_title">Game Rules</p>
+            <p class="rules_rule">You have 6 attempts to guess the 5 letter word</p>
+            <p class="rules_rule">Enter words that exist using the keyboard</p>
+            <p class="rules_rule">Note that a word can contain two or more identical letters</p>
+            <p class="rules_rule">Pay attention to the colors:</p>
+            <p class="rules_colorRule"><span class="greenColor">Green</span> - this letter is in the word and in a right place</p>
+            <p class="rules_colorRule"><span class="yellowColor">Yellow</span> - this letter is in the word but in a different place</p>
+            <p class="rules_colorRule"><span class="grayColor">Gray</span> - this letter is not in the word</p>
         </div>
     </div>
     <div class="blurBackgroundOfGameEndPopUp">
         <div class="gameEnd gameEnd_popUp">
             <div class="gameEnd_header">
                 <p class="gameEnd_status"></p>
-                <div class="gameEnd_cross"></div>
+                <div class="gameEnd_cross cross"></div>
             </div>
             <div class="gameEnd_word"></div>
             <button class="gameEnd_restartButton button">Try Again</button>
