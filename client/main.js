@@ -179,7 +179,7 @@ class Board {
     fillBoard(e) {
         if (this.currentArray.length === 5) {
             if (e.code === this.CONFIRM_KEYCODE) {
-                this.checkWord();
+               this.checkWordForExistence(this.currentArray.join(''))
             }
             if (e.code === this.DELETE_KEYCODE) {
                 if ($('.board :nth-child(' + (this.blockId - 1) + ')').hasClass('startAnimation')) return;
@@ -197,6 +197,23 @@ class Board {
 
             }
         }
+    }
+
+    checkWordForExistence(inputWord){
+        fetch('http://localhost:3013/check-word?word='+inputWord, {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    this.checkWord();
+                } else {
+                    console.log('Not exists');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
     startAgain(){
